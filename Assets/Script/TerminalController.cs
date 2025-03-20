@@ -5,11 +5,13 @@ public class TerminalController : MonoBehaviour
     [SerializeField] private GameObject prefabParaInstanciar; // Prefab que será instanciado
     [SerializeField] private Material materialAtual; // Material do objeto atual
 
-    [SerializeField] private bool premicao = false;
+    public bool premicao = false;
 
     [SerializeField] private int id;
 
     private int objetos = 0;
+
+    [SerializeField] private float angulo = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,11 +42,8 @@ public class TerminalController : MonoBehaviour
                 // Calcula a posição do novo objeto (0.3 unidades acima no eixo Y)
                 Vector3 posicaoNovoObjeto = transform.position + new Vector3(0, 0.3f, 0);
 
-                // Calcula a rotação do novo objeto (180 graus em Y em relação ao jogador)
-                Quaternion rotacaoNovoObjeto = Quaternion.Euler(0, other.transform.rotation.eulerAngles.y + 180, 0);
-
-                // Instancia o novo objeto na posição e rotação calculadas
-                GameObject novoObjeto = Instantiate(prefabParaInstanciar, posicaoNovoObjeto, rotacaoNovoObjeto);
+                // Instancia o novo objeto na posição calculada
+                GameObject novoObjeto = Instantiate(prefabParaInstanciar, posicaoNovoObjeto, Quaternion.identity);
 
                 // Aplica o material do objeto atual ao novo objeto
                 Renderer novoRenderer = novoObjeto.GetComponent<Renderer>();
@@ -59,7 +58,7 @@ public class TerminalController : MonoBehaviour
 
                 // Ajusta o tamanho do novo objeto com base no tamanho do jogador
                 AjustarTamanhoProporcionalAoJogador(novoObjeto, other.transform);
-
+                novoObjeto.transform.Rotate(0, angulo, 0);
                 Debug.Log("Novo objeto criado com o material do objeto atual e tamanho proporcional ao jogador.");
                 objetos++;
             }

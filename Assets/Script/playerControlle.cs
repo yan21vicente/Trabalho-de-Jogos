@@ -17,6 +17,7 @@ public class playerControlle : MonoBehaviour
     [SerializeField] private float velocidadeTiro = 10f; // Velocidade do tiro
     [SerializeField] private float rotacaoSpeed = 100.0f; // Velocidade de rotação
 
+    private bool retorno = false;
 
     void Start()
     {
@@ -26,21 +27,9 @@ public class playerControlle : MonoBehaviour
 
         GameObject guiaObject = GameObject.FindWithTag("Guia");
 
-        // Verifica se o objeto foi encontrado
-        if (guiaObject == null)
-        {
-            Debug.LogError("Objeto com a tag 'Guia' não encontrado.");
-            return;
-        }
-
         // Tenta obter o componente RawImage do objeto
         guiaRawImage = guiaObject.GetComponent<RawImage>();
 
-        // Verifica se o componente RawImage foi encontrado
-        if (guiaRawImage == null)
-        {
-            Debug.LogError("O objeto com a tag 'Guia' não tem um componente RawImage.");
-        }
     }
 
     void Update()
@@ -84,14 +73,15 @@ public class playerControlle : MonoBehaviour
         }
 
         // Mover para posição específica (0, 500, 0) ao pressionar N
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Cura && Navegar && Atirar && Engenheiro && !retorno)
         {
-            MoverParaPosicaoEspecifica(new Vector3(0, 503, 0));
+            MoverParaPosicaoEspecifica(new Vector3(0, 505, 0));
             speed = speed /10;
+            retorno = true;
         }
 
         // Mover para posição aleatória entre -430 e 430 ao pressionar P
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             MoverParaPosicaoAleatoria(-430, 430);
             speed = speed * 10;

@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+
+    
+    [SerializeField] private GameObject[] terminais;
+
     [SerializeField] private Terrain terreno;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject Arvore;
@@ -28,6 +32,10 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(terminais[0].GetComponent<TerminalController>().premicao && terminais[1].GetComponent<TerminalController>().premicao && terminais[2].GetComponent<TerminalController>().premicao && terminais[3].GetComponent<TerminalController>().premicao){
+            Debug.Log("Todos os terminais foram ativados");
+            Debug.Log("O jogo Terminou");
+        }
         // Incrementa o contador de tempo com o tempo passado desde o último frame
         contadorTempo += Time.deltaTime;
 

@@ -335,10 +335,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847307ec225800e4a812c4bee770620c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabParaInstanciar: {fileID: 919132149155446097, guid: 022da3d741e9f9340852a9b21ad96105, type: 3}
+  prefabParaInstanciar: {fileID: 8164078558771037576, guid: 022da3d741e9f9340852a9b21ad96105, type: 3}
   materialAtual: {fileID: 2100000, guid: b3d2f371d84f1834e86111b43fc31739, type: 2}
   premicao: 0
   id: 3
+  angulo: -90
 --- !u!1 &404027323
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,10 +514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847307ec225800e4a812c4bee770620c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabParaInstanciar: {fileID: 919132149155446097, guid: 022da3d741e9f9340852a9b21ad96105, type: 3}
+  prefabParaInstanciar: {fileID: 8164078558771037576, guid: 022da3d741e9f9340852a9b21ad96105, type: 3}
   materialAtual: {fileID: 2100000, guid: bf6d7d67574a2f549a21cff8fcbe9eeb, type: 2}
   premicao: 0
   id: 1
+  angulo: 0
 --- !u!1 &524654576
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,6 +563,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854758af30629494faf4325484d5affa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  terminais:
+  - {fileID: 507672425}
+  - {fileID: 1182161821}
+  - {fileID: 401939331}
+  - {fileID: 1843651815}
   terreno: {fileID: 1496899609}
   player: {fileID: 2108249180}
   Arvore: {fileID: 5716267237769347955, guid: 0028c79627f3eed4583233f96a5437dc, type: 3}
@@ -1442,10 +1449,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847307ec225800e4a812c4bee770620c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabParaInstanciar: {fileID: 919132149155446097, guid: 022da3d741e9f9340852a9b21ad96105, type: 3}
+  prefabParaInstanciar: {fileID: 8164078558771037576, guid: 022da3d741e9f9340852a9b21ad96105, type: 3}
   materialAtual: {fileID: 2100000, guid: 8cd3169805c320a48b87129b238c97c3, type: 2}
   premicao: 0
   id: 2
+  angulo: 180
 --- !u!4 &1236487042 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3818037864430369314, guid: 81c6182c04049434fbf51f1cd0f34836, type: 3}
@@ -2191,10 +2199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847307ec225800e4a812c4bee770620c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabParaInstanciar: {fileID: 919132149155446097, guid: 022da3d741e9f9340852a9b21ad96105, type: 3}
+  prefabParaInstanciar: {fileID: 8164078558771037576, guid: 022da3d741e9f9340852a9b21ad96105, type: 3}
   materialAtual: {fileID: 2100000, guid: 3b3b2e28b7efe654ea6808e8e7cc4506, type: 2}
   premicao: 0
   id: 4
+  angulo: 90
 --- !u!1001 &1986132523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2360,10 +2369,10 @@ MonoBehaviour:
   speed: 5
   energia_total: 100
   energia_atual: 0
-  Cura: 0
-  Navegar: 0
-  Atirar: 0
-  Engenheiro: 0
+  Cura: 1
+  Navegar: 1
+  Atirar: 1
+  Engenheiro: 1
   tiroPrefab: {fileID: 5188571651308836842, guid: 31c8fb41d9ef7b643ac5bbfe809df6e3, type: 3}
   velocidadeTiro: 10
   rotacaoSpeed: 1
