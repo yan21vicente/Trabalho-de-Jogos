@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject inimigo;
     
 
-    [SerializeField] private float intervalo = 30f;
+    [SerializeField] private float intervalo = 120f;
 
     // Contador de tempo
     private float contadorTempo = 0f;
@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
         // Verifica se o contador atingiu o intervalo desejado
         if (contadorTempo >= intervalo)
         {
-            CriarObjetosAleatorios(inimigo, 30, "Inimigos");
+            CriarObjetosAleatorios(inimigo, 10, "Inimigos");
             // Reinicia o contador de tempo
             contadorTempo = 0f;
         }

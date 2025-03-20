@@ -1,10 +1,10 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class playerControlle : MonoBehaviour
 {
+    [SerializeField] private RawImage guiaRawImage;   
     [SerializeField] private GameObject Cabeca; // Prefab do tiro
     [SerializeField] private float speed = 5.0f;
-    public float Correr = 1.0f;
     
     [SerializeField] private int energia_total = 100;
     [SerializeField] private int energia_atual;
@@ -23,6 +23,24 @@ public class playerControlle : MonoBehaviour
         speed = 5.0f;
         energia_total = 100;
         energia_atual = energia_total;
+
+        GameObject guiaObject = GameObject.FindWithTag("Guia");
+
+        // Verifica se o objeto foi encontrado
+        if (guiaObject == null)
+        {
+            Debug.LogError("Objeto com a tag 'Guia' não encontrado.");
+            return;
+        }
+
+        // Tenta obter o componente RawImage do objeto
+        guiaRawImage = guiaObject.GetComponent<RawImage>();
+
+        // Verifica se o componente RawImage foi encontrado
+        if (guiaRawImage == null)
+        {
+            Debug.LogError("O objeto com a tag 'Guia' não tem um componente RawImage.");
+        }
     }
 
     void Update()
@@ -39,30 +57,30 @@ public class playerControlle : MonoBehaviour
         float dz = Input.GetAxis("Vertical") * Time.deltaTime * speed;
         float dx = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
 
-        if (transform.position.x + dx < 4000)
+        if (transform.position.x + dx < 2900)
         {
-            if (transform.position.x - dx > -4000)
+            if (transform.position.x - dx > -2900)
             {
-                if (transform.position.z + dz < 4000)
+                if (transform.position.z + dz < 2900)
                 {
-                    if (transform.position.z - dz > -4000)
+                    if (transform.position.z - dz > -2900)
                     {
                         transform.Translate(dx, 0, dz);
                     }
                 }
             }
         }
-
-        // Rotaciona para a esquerda (Q)
         if (Input.GetKey(KeyCode.Q))
         {
-            transform.Rotate(0, -rotacaoSpeed * Time.deltaTime, 0);
+            transform.Rotate(0, -rotacaoSpeed * 0.001f, 0);
+            guiaRawImage.rectTransform.Rotate(0, 0, -rotacaoSpeed * 0.001f);
         }
 
         // Rotaciona para a direita (E)
         if (Input.GetKey(KeyCode.E))
         {
-            transform.Rotate(0, rotacaoSpeed * Time.deltaTime, 0);
+            transform.Rotate(0, rotacaoSpeed * 0.001f, 0);
+            guiaRawImage.rectTransform.Rotate(0, 0, rotacaoSpeed * 0.001f);
         }
 
         // Mover para posição específica (0, 500, 0) ao pressionar N
@@ -163,7 +181,7 @@ public class playerControlle : MonoBehaviour
                 // Instancia o tiro na posição e rotação do jogador
                 GameObject tiro = Instantiate(tiroPrefab, Cabeca.transform.position, Cabeca.transform.rotation);
 
-                tiro.GetComponent<Rigidbody>().linearVelocity = transform.forward * velocidadeTiro * - 1; // Adiciona velocidade ao tiro
+                tiro.GetComponent<Rigidbody>().linearVelocity = transform.forward * velocidadeTiro ; // Adiciona velocidade ao tiro
             }
             else
             {
