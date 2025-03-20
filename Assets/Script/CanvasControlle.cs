@@ -3,12 +3,19 @@ using UnityEngine.UI;
 public class CanvasControlle : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    public Slider barraEnergia;
+    public Text Energia;
+    
+    public Text Cura_Cordenada;
+    public Text Navegar_Cordenada;
+    public Text Atirar_Cordenada;
+    public Text Engenheiro_Cordenada;
+
+    public Text Player_Cordenada;
+
     public Text Cura;
     public Text Navegar;
     public Text Atirar;
     public Text Engenheiro;
-    public Text Escudeiro;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,9 +30,11 @@ public class CanvasControlle : MonoBehaviour
         Atirar.text = player.GetComponent<playerControlle>().Atirar.ToString();
         Engenheiro.text = player.GetComponent<playerControlle>().Engenheiro.ToString();
 
-        barraEnergia.maxValue = player.GetComponent<playerControlle>().getEnergiaTotal();
-        barraEnergia.minValue = 0;
-        barraEnergia.value = player.GetComponent<playerControlle>().getEnergiaAtual();
-
+        Cura_Cordenada.text = "("+GameObject.FindWithTag("Medico")?.transform.position.x.ToString() + " " + GameObject.FindWithTag("Medico")?.transform.position.z.ToString()+")";
+        Navegar_Cordenada.text = "("+GameObject.FindWithTag("Navegador")?.transform.position.x.ToString() + " " + GameObject.FindWithTag("Navegador")?.transform.position.z.ToString()+")";
+        Atirar_Cordenada.text = "("+GameObject.FindWithTag("Armeiro")?.transform.position.x.ToString() + " " + GameObject.FindWithTag("Armeiro")?.transform.position.z.ToString()+")";
+        Engenheiro_Cordenada.text = "("+GameObject.FindWithTag("Engenheiro")?.transform.position.x.ToString() + " " + GameObject.FindWithTag("Engenheiro")?.transform.position.z.ToString()+")";
+        Player_Cordenada.text = "("+player.transform.position.x.ToString() + " " + player.transform.position.z.ToString()+")";
+        Energia.text = player.GetComponent<playerControlle>().getEnergiaAtual().ToString()+"/"+player.GetComponent<playerControlle>().getEnergiaTotal().ToString();
     }
 }

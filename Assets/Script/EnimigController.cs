@@ -59,7 +59,11 @@ public class EnimigController : MonoBehaviour
             Debug.Log("Colidiu com o tiro: " + collision.gameObject.name);
             Destroy(gameObject);
             Destroy(collision.gameObject);
-            
+            player.GetComponent<playerControlle>().Correr += 1.0f;
+            if(player.GetComponent<playerControlle>().Engenheiro)
+            {
+                player.GetComponent<playerControlle>().UPEnergiaTotal();
+            }
         }
     }
 }

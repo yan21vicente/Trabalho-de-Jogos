@@ -5,56 +5,41 @@ public class GameController : MonoBehaviour
     [SerializeField] private Terrain terreno;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject Arvore;
-    [SerializeField] private Transform objetoGuia; 
+    [SerializeField] private int QuantArvore;
     [SerializeField] private GameObject[] tripulantes;
     [SerializeField] private GameObject inimigo;
+    
 
-    [SerializeField] private double x1;
-    [SerializeField] private double y1;
-    [SerializeField] private double x2;
-    [SerializeField] private double y2;
+    [SerializeField] private float intervalo = 30f;
 
+    // Contador de tempo
+    private float contadorTempo = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        CriarObjetosAleatorios(Arvore, 10, "Floresta");
+        CriarObjetosAleatorios(Arvore, QuantArvore, "Floresta");
         for (int i = 0; i < tripulantes.Length; i++)
         {
             CriarObjetosAleatorios(tripulantes[i], 1, "Tripulantes");
         }
-
-        CalcularGrau(x1, y1, x2, y2);
+        CriarObjetosAleatorios(inimigo, 30, "Inimigos");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        // Incrementa o contador de tempo com o tempo passado desde o último frame
+        contadorTempo += Time.deltaTime;
 
-    public double CalcularGrau(double x1,double  y1,double  x2,double  y2)
-    {
-
-        // Calcula a diferença entre as coordenadas
-        double deltaX = x2 - x1;
-        double deltaY = y2 - y1;
-
-        // Calcula o ângulo em radianos usando Math.Atan2
-        double anguloRadianos = Math.Atan2(deltaY, deltaX);
-
-        // Converte o ângulo de radianos para graus
-        double anguloGraus = anguloRadianos * (180 / Math.PI);
-
-        // Ajusta o ângulo para garantir que esteja no intervalo [0, 360)
-        if (anguloGraus < 0)
+        // Verifica se o contador atingiu o intervalo desejado
+        if (contadorTempo >= intervalo)
         {
-            anguloGraus += 360;
+            CriarObjetosAleatorios(inimigo, 30, "Inimigos");
+            // Reinicia o contador de tempo
+            contadorTempo = 0f;
         }
-
-        // Exibe o resultado
-        Console.WriteLine($"O ângulo entre os pontos é: {anguloGraus} graus.");
     }
-
+    
     private void CriarObjetosAleatorios(GameObject prefab, int quantidade, string nomePai)
     {
         // Verifica se o prefab e o terreno foram atribuídos
@@ -96,7 +81,7 @@ public class GameController : MonoBehaviour
             GameObject novoObjeto = Instantiate(prefab, posicaoAleatoria, Quaternion.identity);
             novoObjeto.transform.parent = pai.transform; // Define o pai
         }
-
+        
         Debug.Log(quantidade + " objetos criados em posições aleatórias dentro do terreno, filhos de " + nomePai + ".");
     }
 }
