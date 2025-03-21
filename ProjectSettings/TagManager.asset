@@ -4,7 +4,12 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Medico
+  - Navegador
+  - Armeiro
+  - Engenheiro
   - Tiro
+  - Guia
   layers:
   - Default
   - TransparentFX

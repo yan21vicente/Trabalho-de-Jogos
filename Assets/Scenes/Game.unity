@@ -2471,18 +2471,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  limiteX: 0
+  limiteZ: 0
   guiaRawImage: {fileID: 404027325}
   Cabeca: {fileID: 312387188}
-  speed: 5
+  speed: 25
   energia_total: 100
   energia_atual: 0
   Cura: 0
   Navegar: 0
-  Atirar: 1
+  Atirar: 0
   Engenheiro: 0
   tiroPrefab: {fileID: 5188571651308836842, guid: 31c8fb41d9ef7b643ac5bbfe809df6e3, type: 3}
-  velocidadeTiro: 10
-  rotacaoSpeed: 1
+  velocidadeTiro: 100
+  rotacaoSpeed: 10
 --- !u!65 &2108249183
 BoxCollider:
   m_ObjectHideFlags: 0
