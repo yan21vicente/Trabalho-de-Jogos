@@ -58,6 +58,7 @@ public class EnimigController : MonoBehaviour
             // Envia uma mensagem para o console com o nome do objeto que colidiu
             Debug.Log("Colidiu com o tiro: " + collision.gameObject.name);
             Destroy(gameObject);
+            player.GetComponent<AudioSource>().Play();
             Destroy(collision.gameObject);
             if(player.GetComponent<playerControlle>().Engenheiro)
             {

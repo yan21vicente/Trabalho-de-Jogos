@@ -21,12 +21,13 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player.GetComponent<playerControlle>().audioSource = GetComponent<AudioSource>();
         CriarObjetosAleatorios(Arvore, QuantArvore, "Floresta");
         for (int i = 0; i < tripulantes.Length; i++)
         {
             CriarObjetosAleatorios(tripulantes[i], 1, "Tripulantes");
         }
-        CriarObjetosAleatorios(inimigo, 30, "Inimigos");
+        CriarObjetosAleatorios(inimigo, 100, "Inimigos");
     }
 
     // Update is called once per frame
@@ -35,6 +36,7 @@ public class GameController : MonoBehaviour
         if(terminais[0].GetComponent<TerminalController>().premicao && terminais[1].GetComponent<TerminalController>().premicao && terminais[2].GetComponent<TerminalController>().premicao && terminais[3].GetComponent<TerminalController>().premicao){
             Debug.Log("Todos os terminais foram ativados");
             Debug.Log("O jogo Terminou");
+            Application.Quit();
         }
         // Incrementa o contador de tempo com o tempo passado desde o último frame
         contadorTempo += Time.deltaTime;

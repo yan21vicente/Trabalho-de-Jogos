@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class playerControlle : MonoBehaviour
 {
+    public AudioSource audioSource;
     [SerializeField] private RawImage guiaRawImage;   
     [SerializeField] private GameObject Cabeca; // Prefab do tiro
     [SerializeField] private float speed = 5.0f;
@@ -61,30 +62,30 @@ public class playerControlle : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Q))
         {
-            transform.Rotate(0, -rotacaoSpeed * 0.001f, 0);
-            guiaRawImage.rectTransform.Rotate(0, 0, -rotacaoSpeed * 0.001f);
+            transform.Rotate(0, -rotacaoSpeed * 0.1f, 0);
+            guiaRawImage.rectTransform.Rotate(0, 0, -rotacaoSpeed * 0.1f);
         }
 
         // Rotaciona para a direita (E)
         if (Input.GetKey(KeyCode.E))
         {
-            transform.Rotate(0, rotacaoSpeed * 0.001f, 0);
-            guiaRawImage.rectTransform.Rotate(0, 0, rotacaoSpeed * 0.001f);
+            transform.Rotate(0, rotacaoSpeed * 0.1f, 0);
+            guiaRawImage.rectTransform.Rotate(0, 0, rotacaoSpeed * 0.1f);
         }
 
         // Mover para posição específica (0, 500, 0) ao pressionar N
         if (Cura && Navegar && Atirar && Engenheiro && !retorno)
         {
             MoverParaPosicaoEspecifica(new Vector3(0, 505, 0));
-            speed = speed /10;
             retorno = true;
+            audioSource.Pause();
         }
 
         // Mover para posição aleatória entre -430 e 430 ao pressionar P
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             MoverParaPosicaoAleatoria(-430, 430);
-            speed = speed * 10;
+            audioSource.Play();
         }
     }
     // Método para mover o jogador para uma posição específica
